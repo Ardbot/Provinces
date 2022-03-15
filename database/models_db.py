@@ -1,9 +1,6 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, CheckConstraint
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
-
-from bot.model import Postindex
 
 """ Создание базы данных """
 engine = create_engine("sqlite:///database/provinces.db")  # , echo=True)

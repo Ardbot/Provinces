@@ -4,49 +4,34 @@ from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.types import BotCommand
 
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
-
-
-from bot import config
-from bot.database import models_db
-
-from bot.handlers.admin.cmd_admin import register_handlers_admin
-from bot.handlers.user.menu_hand import register_handlers_menu
-from bot.handlers.user.common import register_handlers_commands, register_handlers_other
-
-from bot.handlers.user.lk_hand import register_handlers_lk
-
-
 # Регистрация команд, отображаемых в интерфейсе Telegram
-async def set_commands(bot: Bot):
+from bot.Admin import config
+from bot.Admin.create_bot import dp, bot
+from bot.Admin.handlers.cmd_admin import register_handlers_admin
+from bot.Client.handlers.add_service import register_handlers_commands
+
+from bot.General.handlers.common import register_handlers_general_commands, register_handlers_other
+
+
+async def set_commands(bot1: Bot):
     commands = [
-        BotCommand(command="/delete_user", description="тест функции"),
+        BotCommand(command="/add_service", description="тест функции"),
         BotCommand(command="/start", description="Старт и регистрация"),
-        BotCommand(command="/payment", description="Оплата"),
-        BotCommand(command="/work", description="Работа"),
         BotCommand(command="/lk", description="Личный кабинет"),
         BotCommand(command="/cancel", description="Отменить текущее действие")
     ]
-    await bot.set_my_commands(commands)
+    await bot1.set_my_commands(commands)
 
 
 async def main():
-    """ Объявление и инициализация объектов бота и диспетчера """
-    bot = Bot(token=config.TOKEN)
-    dp = Dispatcher(bot, storage=MemoryStorage())
-
-
+    """ Главная функция """
 
     """ Регистрация модулей """
 
     """ Регистрация хэндлеров """
-    register_handlers_commands(dp)
+    register_handlers_general_commands(dp)
     register_handlers_admin(dp)
-    register_handlers_menu(dp)
-    register_handlers_lk(dp)
-
-
+    register_handlers_commands(dp)
     register_handlers_other(dp)
 
     """ Установка команд бота """

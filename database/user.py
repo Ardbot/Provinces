@@ -1,7 +1,3 @@
-from sqlite3 import Error
-
-from bot.database.sql_db import Database
-
 create_table_users = """CREATE TABLE Users (
     id             INTEGER       NOT NULL,
     nickname       VARCHAR (50),

@@ -1,14 +1,9 @@
 from aiogram.types import ReplyKeyboardMarkup
 
-
-# def test():
-#     markup = ReplyKeyboardMarkup(resize_keyboard=True)
-#     markup.row('Test')
-#     return markup
 """ Основное меню """
 
-menu = ReplyKeyboardMarkup(resize_keyboard=True).add("Личный кабинет", "Услуги")
-menu.add("Товары", "Помощь")
+menu = ReplyKeyboardMarkup(resize_keyboard=True).add("Личный кабинет", "Команды")
+menu.add("Помощь")
 
 cancel = "Отмена"
 
