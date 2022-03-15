@@ -7,6 +7,10 @@ menu.add("Помощь")
 
 cancel = "Отмена"
 
+help_me = ReplyKeyboardMarkup(resize_keyboard=True).add("О боте", "Команды")
+help_me.add(cancel)
+
+
 navigation = ReplyKeyboardMarkup(resize_keyboard=True)
 navigation.add("Предыдущий", "Следующий")
 navigation.add("Рандом", cancel)

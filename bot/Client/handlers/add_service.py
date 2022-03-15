@@ -17,7 +17,18 @@ async def service_start(message: types.Message):
 
 
 async def service_name(message: types.Message, state: FSMContext):
-    """ Редактируем имя """
+    """ Добавляем название услуги"""
+    if len(message.text) >= 25:
+        await message.answer("Не более 25 символов")
+    elif message.text == "/add_service":
+        await message.answer("Введите название услуги:")
+    else:
+        await state.update_data(name=message.text)
+        await message.answer(f"Имя услуги:'{message.text}'")
+        await ServiceForm.description_service.set()
+
+async def service_description(message: types.Message, state: FSMContext):
+    """ Добавляем описание """
     if len(message.text) >= 25:
         await message.answer("Не более 25 символов")
     elif message.text == "/add_service":
